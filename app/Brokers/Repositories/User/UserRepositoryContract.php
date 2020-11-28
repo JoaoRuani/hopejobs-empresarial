@@ -9,6 +9,9 @@ interface UserRepositoryContract
 {
     /**
      * Cria o usuário relacionado com a empresa
+     * @param User $user
+     * @param Company $company
+     * @return User
      */
     function create(User $user, Company $company) : User;
 }

@@ -17,9 +17,6 @@ class Register extends Component
     public string $email = '';
     public string $cpf = '';
 
-    /**
-     * Representa o cnpj da empresa
-     */
     public string $cnpj = '';
 
     public string $password = '';
@@ -32,7 +29,7 @@ class Register extends Component
         'password' => ['required', 'min:8', 'same:passwordConfirmation'],
         'cpf' => ['required', 'cpf', 'unique:'.User::class],
         'cnpj' => ['required', 'cnpj', 'unique:'.Company::class]
-    ]; 
+    ];
     public function register(UserServiceContract $userService)
     {
         $this->validate();
@@ -44,7 +41,7 @@ class Register extends Component
                 'password' => Hash::make($this->password),
                 'cpf' => $this->cpf
             ]), $this->cnpj);
-                 
+
             event(new Registered($user));
 
             Auth::login($user, true);

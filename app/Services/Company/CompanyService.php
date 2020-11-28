@@ -21,18 +21,18 @@ class CompanyService implements CompanyServiceContract
     public function createByCnpj(string $cnpj) : Company
     {
         try {
+            if(Company::where('cnpj', $cnpj)->first())
+            {
+                throw new Exception('Já existe uma empresa cadastrada com esse CNPJ.');
+            }
             $response = $this->apiReceita->GetCompanyByCnpj($cnpj);
             if($response == null)
             {
                 throw new Exception('Não foi identificada uma empresa com esse CNPJ.');
             }
-            if(Company::where('cnpj', $cnpj)->first())
-            {
-                throw new Exception('Já existe uma empresa cadastrada com esse CNPJ.');
-            }
-            $slug = empty($response->fantasia) ? $response->nome : $response->fantasia; 
+            $slug = empty($response->fantasia) ? $response->nome : $response->fantasia;
             return $this->repository->Create(new Company([
-                'cnpj' => $cnpj, 
+                'cnpj' => $cnpj,
                 'slug' => Str::slug($slug, '-', config('app.locale')),
                 'trading_name' => $response->fantasia,
                 'name' => $response->nome

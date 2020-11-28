@@ -32,7 +32,7 @@ class Login extends Component
 
             return;
         }
-        $redirectTo = Auth::user()->role == UserRoles::ADMIN ? 'admin.dashboard' : 'home';
+        $redirectTo = Auth::user()->role->is(UserRoles::ADMIN) ? 'admin.dashboard' : 'home';
         return redirect()->intended(route($redirectTo));
     }
 

@@ -35,4 +35,9 @@ class Job extends Model
         return $this->hasMany(HiringPhase::class);
     }
 
+    public function JobRole(): BelongsTo
+    {
+        return $this->belongsTo(JobRole::class);
+    }
+
 }

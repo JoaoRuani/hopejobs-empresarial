@@ -18,10 +18,11 @@ class CreateJobsTable extends Migration
             $table->id();
             $table->string('title');
             $table->double('salary')->nullable();
-            $table->text('responsabilities')->nullable();
+            $table->text('responsibilities')->nullable();
             $table->text('benefits')->nullable();
             $table->text('observations')->nullable();
-            $table->enum('hiringType', HiringTypes::getValues())->default(HiringTypes::CLT);
+            $table->string('hiringType');
+            $table->foreignId('job_role_id')->constrained();
             $table->foreignId('company_id')->constrained();
             $table->timestamps();
         });

@@ -3,12 +3,14 @@
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JobsController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Passwords\Confirm;
 use App\Http\Livewire\Auth\Passwords\Email;
 use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
+use App\Http\Livewire\CreateJob;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +57,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('home', [HomeController::class, 'index'])
         ->name('home');
+
+    Route::name('job.')->prefix('job')->group(function () {
+        Route::get('create', [JobsController::class, 'create'])->name('create');
+        Route::post('store', [JobsController::class, 'store'])->name('store');
+    });
 });
 
 Route::middleware('admin')->prefix('admin')->group(function () {

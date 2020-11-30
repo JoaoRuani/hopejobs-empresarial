@@ -10,6 +10,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use OwenIt\Auditing\Auditable;
 
+/**
+ * Class User
+ * @package App\Models
+ * @property Company $company
+ */
 class User extends Authenticatable implements \OwenIt\Auditing\Contracts\Auditable
 {
     use HasFactory, Notifiable, Auditable;
@@ -52,7 +57,7 @@ class User extends Authenticatable implements \OwenIt\Auditing\Contracts\Auditab
         return $this->belongsTo(Company::class);
     }
 
-    public function getFullName() : string 
+    public function getFullName() : string
     {
         return "{$this->first_name} {$this->last_name}";
     }

@@ -7,6 +7,11 @@ module.exports = {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
                 primary: ['Viga', ...defaultTheme.fontFamily.sans]
             },
+            backgroundColor: theme => ({
+                ...theme('colors'),
+                'primary': '#78909C',
+                'danger': '#FF8B8B'
+            })
         },
     },
     variants: {},

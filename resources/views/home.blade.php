@@ -11,8 +11,20 @@
                 </a>
             </div>
             @forelse($jobs as $job)
-                <div class="shadow-sm p-3">
-                    <h3>TITULO DA VAGA</h3>
+                <div class="shadow-md p-3 rounded-lg mb-5">
+                    <div class="flex justify-between items-center mb-5">
+                        <h3 class="text-indigo-600 text-xl">{{$job->title}}</h3>
+                        <em class="text-sm">Criada em {{$job->created_at->format('d/m/Y')}}</em>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                        <p><strong>Tipo Contratação:</strong> {{\Illuminate\Support\Str::upper($job->hiringType->description)}}</p>
+                        <p><strong>Cargo:</strong> {{$job->jobRole->name}}</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <a href="#" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">Ver Detalhes</a>
+                        <p><strong>Candidatos:</strong> {{$job->applications()->where('status', '!=', \App\Enums\ApplicationStatus::IGNORED)->count()}}</p>
+                    </div>
+
                 </div>
             @empty
                 <div class="shadow-sm bg-indigo-100 rounded-md p-4">Você não possuir vagas!</div>

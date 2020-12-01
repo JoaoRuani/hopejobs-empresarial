@@ -5,6 +5,7 @@ namespace App\Services\Company;
 use App\Brokers\ExternalServices\APIReceitaws\APIReceitawsContract;
 use App\Brokers\Repositories\Company\CompanyRepositoryContract;
 use App\Models\Company;
+use App\Models\Image;
 use Exception;
 use Illuminate\Support\Str;
 
@@ -31,12 +32,12 @@ class CompanyService implements CompanyServiceContract
                 throw new Exception('Não foi identificada uma empresa com esse CNPJ.');
             }
             $slug = empty($response->fantasia) ? $response->nome : $response->fantasia;
-            return $this->repository->Create(new Company([
+             $this->repository->Create(new Company([
                 'cnpj' => $cnpj,
                 'slug' => Str::slug($slug, '-', config('app.locale')),
-                'trading_name' => $response->fantasia,
+                'trading_name' => $response->fantasia === "" ? $response->nome : $response->fantasia,
                 'name' => $response->nome
-            ]));
+            ]), new Image(['url' => url('/images/default-logo.svg')]));
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -17,14 +17,6 @@ class EditCompany extends Component
     public string $cnpj;
     public $tempImage;
 
-    public function rules()
-    {
-        return [
-            'tempImage' => ['nullable','image', 'max:2048'],
-            'tradingName' => ['required','string', 'min:2', 'max:100']
-        ];
-    }
-
     public function mount()
     {
         $company = Auth::user()->company;
@@ -38,10 +30,6 @@ class EditCompany extends Component
         return view('livewire.edit-company');
     }
 
-    public function updated()
-    {
-        $string = "hello";
-    }
     public function save()
     {
         $this->validate([

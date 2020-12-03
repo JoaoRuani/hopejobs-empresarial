@@ -31,14 +31,16 @@
             @endforelse
         </section>
         <section class="p-6 bg-white rounded-xl shadow-md flex-1 order-first lg:order-none col-span-2 relative">
-            <div class="flex space-x-2 items-center">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
                 <div class="flex-shrink-0 rounded-xl border-solid border-2 border-indigo-600 p-2">
-                    <img class="h-16 " src="https://pt.freelogodesign.org/Content/img/logo-samples/flooop.png" alt="Logo">
+                    <img class="h-16 w-16" src="{{$company->image->url}}" alt="Logo">
                 </div>
                 <div>
                     <h2>{{empty($company->trading_name) ? $company->name : $company->trading_name}}</h2>
                 </div>
-                <a href="#" title="Editar">
+                </div>
+                <a href="{{route('company.edit')}}" title="Editar">
                     <i class="material-icons text-indigo-500">create</i>
                 </a>
             </div>

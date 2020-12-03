@@ -11,6 +11,7 @@ use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
 use App\Http\Livewire\CreateJob;
+use App\Http\Livewire\EditCompany;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,6 +62,10 @@ Route::middleware('auth')->group(function () {
     Route::name('job.')->prefix('job')->group(function () {
         Route::get('create', [JobsController::class, 'create'])->name('create');
         Route::post('store', [JobsController::class, 'store'])->name('store');
+    });
+
+    Route::name('company.')->prefix('company')->group(function() {
+        Route::get('edit', EditCompany::class)->name('edit');
     });
 });
 

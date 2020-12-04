@@ -16,15 +16,7 @@ class JobResource extends JsonResource
     {
         $company = $this->company;
         return [
-            'company' => [
-                'id' => $company->id,
-                'name' =>  $company->trading_name,
-                'logo' => $company->image->url
-            ],
-            'job_role' => [
-                'id' => $this->jobRole->id,
-                'name' => $this->jobRole->name
-            ],
+            'id' => $this->id,
             'salary' => $this->salary,
             'responsibilities' => $this->responsibilities,
             'hiringType' => [
@@ -35,7 +27,16 @@ class JobResource extends JsonResource
             'observations' => $this->observations,
             'title' => $this->title,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'updated_at' => $this->updated_at,
+            'company' => [
+                'id' => $company->id,
+                'name' =>  $company->trading_name,
+                'logo' => $company->image->url
+            ],
+            'job_role' => [
+                'id' => $this->jobRole->id,
+                'name' => $this->jobRole->name
+            ],
         ];
     }
 }

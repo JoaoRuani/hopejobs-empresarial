@@ -43,7 +43,7 @@ class EditCompany extends Component
         if($this->tempImage != null)
         {
             $logo = $company->image;
-            $logo->url = Storage::url($this->tempImage->store('public/company'));
+            $logo->url = url(Storage::url($this->tempImage->store('public/company')));
             $logo->save();
         }
         $this->redirect(route('home'));

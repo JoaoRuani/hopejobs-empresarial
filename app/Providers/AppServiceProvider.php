@@ -12,6 +12,7 @@ use App\Brokers\Repositories\User\UserRepositoryContract;
 use App\Services\Company\CompanyService;
 use App\Services\Company\CompanyServiceContract;
 use App\Services\User\UserServiceContract;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -39,5 +40,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        JsonResource::withoutWrapping();
     }
 }

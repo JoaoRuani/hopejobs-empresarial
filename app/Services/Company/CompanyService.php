@@ -32,7 +32,7 @@ class CompanyService implements CompanyServiceContract
                 throw new Exception('Não foi identificada uma empresa com esse CNPJ.');
             }
             $slug = empty($response->fantasia) ? $response->nome : $response->fantasia;
-             $this->repository->Create(new Company([
+            return $this->repository->Create(new Company([
                 'cnpj' => $cnpj,
                 'slug' => Str::slug($slug, '-', config('app.locale')),
                 'trading_name' => $response->fantasia === "" ? $response->nome : $response->fantasia,

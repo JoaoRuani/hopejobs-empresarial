@@ -18,6 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('jobs', function() {
-    return \App\Http\Resources\JobResource::collection(\App\Models\Job::all());
+Route::prefix('jobs')->group(function()
+{
+    Route::get('/', function() {
+        return \App\Http\Resources\JobResource::collection(\App\Models\Job::all());
+    });
+    Route::post('apply', [\App\Http\Controllers\API\JobController::class, 'apply']);
 });
+
+
+
+

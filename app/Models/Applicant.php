@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Applicant extends Model
 {
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'job_id'];
     protected $casts = [
         'status' => ApplicationStatus::class
     ];
